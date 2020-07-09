@@ -1,0 +1,35 @@
+{:styles {:font {:fontname "Arial"}
+          :edge-default {:styles [:font]
+                         :fontsize 8}
+
+          :node-default {:styles [:font]
+                         :fontsize 10 } 
+          :task {:styles [:node-default]
+                 :style :filled
+                 :shape :rect
+                 :gradientangle 90
+                 :fillcolor "#aaaaaa, 0.5:#eeeeee"}
+          :event {:styles [:node-default]
+                 :style :filled
+                 :shape :oval
+                 :fillcolor "gray"}
+          :event-start {:styles [:event]
+                 :fillcolor "lightgreen"}
+          :event-end {:styles [:event]
+                 :fillcolor "lightcoral"}
+          }
+
+ :graph (digraph
+          {:styles [:font]
+           :compound true}
+          (edge {:styles [:edge-default]})
+          (node {:styles [:node-default]})
+          (subgraph :cluster_test
+                    {:label "Test"}
+
+                    [:test-start {:styles [:event-start]}]
+                    [:test-action {:styles [:task]}]
+                    [:test-end {:styles [:event-end]}]
+
+                    [:test-start :test-action]
+                    [:test-action :test-end {:label "Finish"}]))}
