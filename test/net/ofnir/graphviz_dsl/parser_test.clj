@@ -8,7 +8,10 @@
   [spec data]
   (or (s/valid? spec data) (throw (s/explain spec data))))
 
-(deftest test-parser
+(deftest test-spec
   (are [file-name]
        (valid? ::t/root (edn/slurp-resource file-name))
     "sample.edn"))
+
+(deftest test-parser-error-handling
+  (is (thrown? Exception (t/parse {}))))

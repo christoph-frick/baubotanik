@@ -1,5 +1,6 @@
 (ns net.ofnir.graphviz-dsl.parser
-  (:require [clojure.spec.alpha :as s]))
+  (:require [clojure.spec.alpha :as s]
+            [expound.alpha :as expound]))
 
 (s/def ::style map?)
 
@@ -41,7 +42,7 @@
   [spec data]
   (if (s/valid? spec data)
     (s/conform spec data)
-    (throw (s/explain spec data))))
+    (throw (ex-info (expound/expound-str spec data) {}))))
 
 (defn parse
   [graph]
