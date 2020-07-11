@@ -1,8 +1,8 @@
-(ns net.ofnir.graphviz-dsl.parser-test
+(ns net.ofnir.baubotanik.parser-test
   (:require [clojure.test :refer [deftest testing is are]]
-            [net.ofnir.graphviz-dsl.parser :as t]
+            [net.ofnir.baubotanik.parser :as t]
             [clojure.spec.alpha :as s]
-            [net.ofnir.graphviz-dsl.util.edn :as edn]))
+            [net.ofnir.baubotanik.util.edn :as edn]))
 
 (defn valid?
   [spec data]

@@ -1,4 +1,4 @@
-(ns net.ofnir.graphviz-dsl.parser
+(ns net.ofnir.baubotanik.parser
   (:require [clojure.spec.alpha :as s]
             [expound.alpha :as expound]))
 

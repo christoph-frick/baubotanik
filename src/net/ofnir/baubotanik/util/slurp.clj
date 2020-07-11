@@ -1,4 +1,4 @@
-(ns net.ofnir.graphviz-dsl.util.slurp
+(ns net.ofnir.baubotanik.util.slurp
   (:require [clojure.java.io :as io]))
 
 (defn slurp-file

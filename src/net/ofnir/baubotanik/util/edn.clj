@@ -1,6 +1,6 @@
-(ns net.ofnir.graphviz-dsl.util.edn
+(ns net.ofnir.baubotanik.util.edn
   (:require [clojure.edn :as edn]
-            [net.ofnir.graphviz-dsl.util.slurp :as s]))
+            [net.ofnir.baubotanik.util.slurp :as s]))
 
 (defn slurp-file
   [name]

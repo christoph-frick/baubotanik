@@ -1,4 +1,4 @@
-(ns net.ofnir.graphviz-dsl.writer
+(ns net.ofnir.baubotanik.writer
   (:require [com.stuartsierra.dependency :as dep]
             [clojure.string :as str]))
 

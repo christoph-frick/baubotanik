@@ -1,9 +1,9 @@
-(ns net.ofnir.graphviz-dsl.writer-test
+(ns net.ofnir.baubotanik.writer-test
   (:require [clojure.test :refer [deftest testing is are]]
-            [net.ofnir.graphviz-dsl.writer :as t]
-            [net.ofnir.graphviz-dsl.parser :as p]
-            [net.ofnir.graphviz-dsl.util.slurp :as r]  
-            [net.ofnir.graphviz-dsl.util.edn :as edn]))
+            [net.ofnir.baubotanik.writer :as t]
+            [net.ofnir.baubotanik.parser :as p]
+            [net.ofnir.baubotanik.util.slurp :as r]  
+            [net.ofnir.baubotanik.util.edn :as edn]))
 
 (deftest test-expand-styles
   (let [known-styles {:a {:x 1}}

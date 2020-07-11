@@ -1,8 +1,8 @@
-(ns net.ofnir.graphviz-dsl.main
+(ns net.ofnir.baubotanik.main
   (:gen-class)
-  (:require [net.ofnir.graphviz-dsl.util.edn :as edn]
-            [net.ofnir.graphviz-dsl.parser :as p]
-            [net.ofnir.graphviz-dsl.writer :as w]
+  (:require [net.ofnir.baubotanik.util.edn :as edn]
+            [net.ofnir.baubotanik.parser :as p]
+            [net.ofnir.baubotanik.writer :as w]
             [clojure.java.io :as io]
             [fmnoise.flow :as flow]))
 

@@ -1,6 +1,6 @@
-(defproject net.ofnir/graphviz-dsl "0.1.0-SNAPSHOT"
+(defproject net.ofnir/baubotanik "0.1.0-SNAPSHOT"
   :description "Generate GraphViz DOT files from EDN with styling similar to CSS"
-  :url "https://github.com/christoph-frick/graphviz-dsl"
+  :url "https://github.com/christoph-frick/baubotanik"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.1"]
@@ -8,6 +8,6 @@
                  [com.stuartsierra/dependency "1.0.0"]
                  [expound "0.8.5"]
                  [fmnoise/flow "4.0.0"]]
-  :main ^:skip-aot net.ofnir.graphviz-dsl.main
+  :main ^:skip-aot net.ofnir.baubotanik.main
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
