@@ -34,7 +34,7 @@
 (deftest test-write-attr-list
   (is (=
        "a=\"true\"\nb=\"42\"\nc=\"test\"\n"
-       (t/write-attr-list {:a true :b 42 :c "test"}))))
+       (t/write-attr-list {:indent 0} {:a true :b 42 :c "test"}))))
 
 (deftest test-write-graph
   (are [base-name]

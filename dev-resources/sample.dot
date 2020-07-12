@@ -1,41 +1,38 @@
 digraph {
-fontname="Arial"
-compound="true"
-edge [
-fontname="Arial"
-,fontsize="8"
-]
-node [
-fontname="Arial"
-,fontsize="10"
-]
-subgraph cluster_test {
-label="Test"
-test_start [
-fontname="Arial"
-,fontsize="10"
-,style="filled"
-,shape="oval"
-,fillcolor="lightgreen"
-]
-test_action [
-fontname="Arial"
-,fontsize="10"
-,style="filled"
-,shape="rect"
-,gradientangle="90"
-,fillcolor="#aaaaaa, 0.5:#eeeeee"
-]
-test_end [
-fontname="Arial"
-,fontsize="10"
-,style="filled"
-,shape="oval"
-,fillcolor="lightcoral"
-]
-test_start -> test_action
-test_action -> test_end [
-label="Finish"
-]
-}
+	fontname="Arial"
+	compound="true"
+	edge [
+		fontname="Arial"
+		,fontsize="8"
+	]
+	node [
+		fontname="Arial"
+		,fontsize="10"
+	]
+	subgraph cluster_test {
+		label="Test"
+		test_start [
+			style="filled"
+			,shape="oval"
+			,fillcolor="lightgreen"
+			,label="Start"
+		]
+		test_action [
+			style="filled"
+			,shape="rect"
+			,gradientangle="90"
+			,fillcolor="#aaaaaa, 0.5:#eeeeee"
+			,label="Action"
+		]
+		test_end [
+			style="filled"
+			,shape="oval"
+			,fillcolor="lightcoral"
+			,label="End"
+		]
+		test_start -> test_action
+		test_action -> test_end [
+			label="Finish"
+		]
+	}
 }
