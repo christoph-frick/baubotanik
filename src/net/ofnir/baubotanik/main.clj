@@ -12,8 +12,9 @@
        (flow/then-call p/parse)
        (flow/then-call w/write)
        (flow/then-call #(with-open [w (io/writer output)]
-                          (.write w %)))
-       (flow/else #(println (ex-message %)))))
+                          (.write w ^String %)))
+       (flow/else #(binding [*out* *err*]
+                       (println (ex-message %))))))
 
 (defn -main
   [& [input-file-name output-file-name]]

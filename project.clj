@@ -11,3 +11,4 @@
   :main ^:skip-aot net.ofnir.baubotanik.main
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
+  :global-vars {*warn-on-reflection* true}
