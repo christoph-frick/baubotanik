@@ -9,12 +9,12 @@ Since GraphViz only allows for mass-styling things with "from here on
 things are styled like this", it's hard to keep a structure in the DOT
 file, that keeps logical things together.
 
-There are (sample files and the according results)[dev-resources/] (as
+There are [sample files and the according results](./dev-resources) (as
 used in the tests).
 
 ## Usage
 
-Build an ueberjar:
+Build an *uberjar*:
 
 ```
 lein uberjar
@@ -23,8 +23,23 @@ lein uberjar
 Run the resulting uberjar with source and target file (or leave the
 later out to have the output on stdout):
 
-```sh 
+```sh
 java -jar target/uberjar/baubotanik-0.1.0-SNAPSHOT-standalone.jar dev-resources/sample.edn | dot -Tpng | display -
+```
+
+- or -
+
+Build a *native image* (requires `native-image` from Graal to be
+installed):
+
+```
+lein native-image
+```
+
+Run:
+
+```sh
+./target/default+uberjar/baubotanik dev-resources/sample.edn | dot -Tpng | display -
 ```
 
 ## License
