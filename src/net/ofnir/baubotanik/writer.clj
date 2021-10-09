@@ -42,18 +42,18 @@
   [ctx]
   (update ctx :indent inc))
 
-(defn write-attr-key
+(defn attr-key
   [kw]
   (-> kw
       (name)
       (str/escape {\- "_"})))
 
-(defn write-attr-value
+(defn attr-value
   [attr]
   (str "\""
        (str/escape
         (cond
-          (keyword? attr) (write-attr-key attr)
+          (keyword? attr) (attr-key attr)
           :else (str attr))
         {\" "\\\""})
        "\""))
@@ -61,20 +61,20 @@
 (defn attr-list
   [attrs]
   (map (fn [[k v]]
-         (str (write-attr-key k) "=" (write-attr-value v)))
+         (str (attr-key k) "=" (attr-value v)))
        attrs))
 
-(defn write-attr-list
+(defn attrs
   [ctx attrs]
   (let [spacing (indent ctx)]
     (str (str/join
           "\n"
           (map
-           #(str spacing %)
+           (partial str spacing)
            (attr-list attrs)))
          "\n")))
 
-(defn write-attr-list-block
+(defn attr-block
   [ctx attrs]
   (let [spacing (indent (inc-indent ctx))]
     (str "[\n"
@@ -88,63 +88,59 @@
   [{:keys [known-styles] :as ctx} style]
   (if style
     (str " "
-         (write-attr-list-block ctx (expand-styles known-styles style)))
+         (attr-block ctx (expand-styles known-styles style)))
     ""))
 
-(defn write-node
+(defn node
   [ctx {:keys [node-id style]}]
   (str (indent ctx)
-       (write-attr-key node-id)
+       (attr-key node-id)
        (write-style-block ctx style)))
 
-(defn write-edge
+(defn edge
   [ctx {:keys [source-node-id target-node-id style]}]
   (str (indent ctx)
-       (write-attr-key source-node-id)
+       (attr-key source-node-id)
        " -> "
-       (write-attr-key target-node-id)
+       (attr-key target-node-id)
        (write-style-block ctx style)))
 
-(defn write-style
+(defn style
   [ctx {:keys [type style]}]
   (str (indent ctx)
-       (write-attr-key type)
+       (attr-key type)
        (write-style-block ctx style)))
 
-(declare write-block)
+(declare block)
 
-(defn write-child
+(defn child
   [ctx [type data]]
   (case type
-    :node (write-node ctx data)
-    :edge (write-edge ctx data)
-    :style (write-style ctx data)
-    (write-block ctx data)))
+    :node (node ctx data)
+    :edge (edge ctx data)
+    :style (style ctx data)
+    (block ctx data)))
 
-(defn write-block
+(defn block
   [{:keys [known-styles] :as ctx} {:keys [type name style children]}]
   (let [ctx-ident+1 (inc-indent ctx)
         spacing (indent ctx)]
     (str spacing
-         (write-attr-key type)
+         (attr-key type)
          (if name
            (str " "
-                (write-attr-key name))
+                (attr-key name))
            "")
          " {\n"
-         (write-attr-list ctx-ident+1 (expand-styles known-styles style))
-         (str/join "\n" (map (fn [child] (write-child ctx-ident+1 child)) children))
+         (attrs ctx-ident+1 (expand-styles known-styles style))
+         (str/join "\n" (map (partial child ctx-ident+1) children))
          "\n"
          spacing
          "}")))
 
-(defn write-graph
+(defn write
   [graph]
   (let [known-styles (build-known-styles (get graph :styles {}))
         ctx {:known-styles known-styles
              :indent 0}]
-    (write-block ctx (:graph graph))))
-
-(defn write
-  [graph]
-  (write-graph graph))
+    (block ctx (:graph graph))))

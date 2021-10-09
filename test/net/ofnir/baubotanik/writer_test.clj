@@ -2,7 +2,7 @@
   (:require [clojure.test :refer [deftest testing is are]]
             [net.ofnir.baubotanik.writer :as t]
             [net.ofnir.baubotanik.parser :as p]
-            [net.ofnir.baubotanik.util.slurp :as r]  
+            [net.ofnir.baubotanik.util.slurp :as r]
             [net.ofnir.baubotanik.util.edn :as edn]))
 
 (deftest test-expand-styles
@@ -26,18 +26,18 @@
            (t/build-known-styles styles)))))
 
 (deftest test-kw-to-attr
-  (is (= "a_b" (t/write-attr-key :a-b))))
+  (is (= "a_b" (t/attr-key :a-b))))
 
-(deftest test-write-attr
-  (is (= "\"test\\\"test\"" (t/write-attr-value "test\"test"))))
+(deftest test-attr
+  (is (= "\"test\\\"test\"" (t/attr-value "test\"test"))))
 
-(deftest test-write-attr-list
+(deftest test-attrs
   (is (=
        "a=\"true\"\nb=\"42\"\nc=\"test\"\n"
-       (t/write-attr-list {:indent 0} {:a true :b 42 :c "test"}))))
+       (t/attrs {:indent 0} {:a true :b 42 :c "test"}))))
 
-(deftest test-write-graph
+(deftest test-graph
   (are [base-name]
        (= (r/slurp-resource (str base-name ".dot"))
-          (-> (edn/slurp-resource (str base-name ".edn")) (p/parse) (t/write-graph)))
+          (-> (edn/slurp-resource (str base-name ".edn")) (p/parse) (t/write)))
     "sample"))
