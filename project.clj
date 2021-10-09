@@ -19,4 +19,7 @@
   :target-path "target/%s"
   :global-vars {*warn-on-reflection* true}
   :profiles {:uberjar {:aot :all
-                       :native-image {:jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}})
+                       :native-image {:jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
+             :kaocha {:dependencies [[lambdaisland/kaocha "1.0.902"]]}}
+  :aliases {"test-refresh" ["kaocha" "--watch"]
+            "kaocha" ["with-profile" "+kaocha" "run" "-m" "kaocha.runner"]})
