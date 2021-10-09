@@ -6,7 +6,7 @@
   :dependencies [[org.clojure/clojure "1.10.3"]
                  [org.clojure/test.check "1.1.0"]
                  [com.stuartsierra/dependency "1.0.0"]
-                 [expound "0.8.9"]
+                 [expound "0.8.10"]
                  [fmnoise/flow "4.1.0"]]
   :plugins [[io.taylorwood/lein-native-image "0.3.1"]]
   :native-image {:name "baubotanik"
