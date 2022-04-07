@@ -123,7 +123,7 @@
 
 (defn block
   [{:keys [known-styles] :as ctx} {:keys [type name style children]}]
-  (let [ctx-ident+1 (inc-indent ctx)
+  (let [ctx-indent+1 (inc-indent ctx)
         spacing (indent ctx)]
     (str spacing
          (attr-key type)
@@ -132,8 +132,8 @@
                 (attr-key name))
            "")
          " {\n"
-         (attrs ctx-ident+1 (expand-styles known-styles style))
-         (str/join "\n" (map (partial child ctx-ident+1) children))
+         (attrs ctx-indent+1 (expand-styles known-styles style))
+         (str/join "\n" (map (partial child ctx-indent+1) children))
          "\n"
          spacing
          "}")))
