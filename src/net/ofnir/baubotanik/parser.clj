@@ -8,14 +8,14 @@
 
 (s/def ::name keyword?)
 
-(s/def ::node (s/cat :node-id ::name 
+(s/def ::node (s/cat :node-id ::name
                      :style ::maybe-style))
 
-(s/def ::edge (s/cat :source-node-id ::name 
-                     :target-node-id ::name 
+(s/def ::edge (s/cat :source-node-id ::name
+                     :target-node-id ::name
                      :style ::maybe-style))
 
-(s/def ::style-block (s/cat :type #{'node 'edge} 
+(s/def ::style-block (s/cat :type #{'node 'edge}
                             :style ::style))
 
 (s/def ::inner-block (s/alt :block ::named-block
@@ -34,7 +34,7 @@
                       :style ::maybe-style
                       :children ::children))
 
-(s/def ::root (s/keys 
+(s/def ::root (s/keys
                  :req-un [::graph]
                  :opt-un  [::styles]))
 
