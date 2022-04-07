@@ -111,6 +111,20 @@
        (attr-key type)
        (write-style-block ctx style)))
 
+(defn rank
+  [ctx {:keys [rank nodes]}]
+  (let [ctx-indent+1 (inc-indent ctx)
+        spacing (indent ctx)]
+    (str spacing
+         "{\n"
+         (indent ctx-indent+1)
+         "rank=" (attr-key rank)
+         "\n"
+         (str/join "\n" (map #(str (indent ctx-indent+1) (attr-key %)) nodes))
+         "\n"
+         spacing
+         "}")))
+
 (declare block)
 
 (defn child
@@ -119,6 +133,7 @@
     :node (node ctx data)
     :edge (edge ctx data)
     :style (style ctx data)
+    :rank (rank ctx data)
     (block ctx data)))
 
 (defn block

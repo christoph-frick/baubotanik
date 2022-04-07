@@ -11,6 +11,12 @@ digraph {
 	]
 	subgraph cluster_test {
 		label="Test"
+		test_prerequesite [
+			style="filled"
+			,shape="oval"
+			,fillcolor="lightgreen"
+			,label="Prerequesite"
+		]
 		test_start [
 			style="filled"
 			,shape="oval"
@@ -30,6 +36,12 @@ digraph {
 			,fillcolor="lightcoral"
 			,label="End"
 		]
+		{
+			rank=same
+			test_prerequesite
+			test_start
+		}
+		test_prerequesite -> test_start
 		test_start -> test_action
 		test_action -> test_end [
 			label="Finish"

@@ -18,7 +18,12 @@
 (s/def ::style-block (s/cat :type #{'node 'edge}
                             :style ::style))
 
+(s/def ::rank-block (s/cat :type #{'rank}
+                           :rank ::name
+                           :nodes (s/+ ::name)))
+
 (s/def ::inner-block (s/alt :block ::named-block
+                            :rank ::rank-block
                             :style ::style-block
                             :node ::node
                             :edge ::edge))

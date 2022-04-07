@@ -26,6 +26,8 @@
           (subgraph :cluster_test
                     {:label "Test"}
 
+                    [:test-prerequesite {:styles [:event-start]
+                                         :label "Prerequesite"}]
                     [:test-start {:styles [:event-start]
                                   :label "Start"}]
                     [:test-action {:styles [:task]
@@ -33,5 +35,8 @@
                     [:test-end {:styles [:event-end]
                                 :label "End"}]
 
+                    (rank :same :test-prerequesite :test-start)
+
+                    [:test-prerequesite :test-start]
                     [:test-start :test-action]
                     [:test-action :test-end {:label "Finish"}]))}
