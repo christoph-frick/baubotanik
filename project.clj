@@ -3,11 +3,11 @@
   :url "https://github.com/christoph-frick/baubotanik"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
-  :dependencies [[org.clojure/clojure "1.10.3"]
-                 [org.clojure/test.check "1.1.0"]
+  :dependencies [[org.clojure/clojure "1.11.1"]
+                 [org.clojure/test.check "1.1.1"]
                  [com.stuartsierra/dependency "1.0.0"]
-                 [expound "0.8.10"]
-                 [fmnoise/flow "4.1.0"]]
+                 [expound "0.9.0"]
+                 [fmnoise/flow "4.2.1"]]
   :plugins [[io.taylorwood/lein-native-image "0.3.1"]]
   :native-image {:name "baubotanik"
                  :opts ["--verbose"
@@ -20,6 +20,6 @@
   :global-vars {*warn-on-reflection* true}
   :profiles {:uberjar {:aot :all
                        :native-image {:jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
-             :kaocha {:dependencies [[lambdaisland/kaocha "1.0.902"]]}}
+             :kaocha {:dependencies [[lambdaisland/kaocha "1.64.1010"]]}}
   :aliases {"test-refresh" ["kaocha" "--watch"]
             "kaocha" ["with-profile" "+kaocha" "run" "-m" "kaocha.runner"]})
