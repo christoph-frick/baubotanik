@@ -7,7 +7,8 @@
                  [org.clojure/test.check "1.1.1"]
                  [com.stuartsierra/dependency "1.0.0"]
                  [expound "0.9.0"]
-                 [fmnoise/flow "4.2.1"]]
+                 [fmnoise/flow "4.2.1"]
+                 [hiccup "1.0.5"]]
   :plugins [[io.taylorwood/lein-native-image "0.3.1"]]
   :native-image {:name "baubotanik"
                  :opts ["--verbose"

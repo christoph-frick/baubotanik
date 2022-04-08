@@ -1,6 +1,7 @@
 (ns net.ofnir.baubotanik.writer
   (:require [com.stuartsierra.dependency :as dep]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [hiccup.core :as hiccup]))
 
 (defn expand-styles
   "Materialize a style, that depends on other, known styles"
@@ -48,7 +49,19 @@
       (name)
       (str/escape {\- "_"})))
 
-(defn attr-value
+(defn escape-double-quotes
+  [s]
+  (str/escape
+   s
+   {\" "\\\""}))
+
+(defn attr-html
+  [attr]
+  (str "< "
+       (hiccup/html attr)
+       " >"))
+
+(defn attr-string
   [attr]
   (str "\""
        (str/escape
@@ -57,6 +70,12 @@
           :else (str attr))
         {\" "\\\""})
        "\""))
+
+(defn attr-value
+  [attr]
+  (if (vector? attr)
+    (attr-html attr)
+    (attr-string attr)))
 
 (defn attr-list
   [attrs]

@@ -27,7 +27,7 @@
                     {:label "Test"}
 
                     [:test-prerequesite {:styles [:event-start]
-                                         :label "Prerequesite"}]
+                                         :label [:b "Prerequesite"]}]
                     [:test-start {:styles [:event-start]
                                   :label "Start"}]
                     [:test-action {:styles [:task]

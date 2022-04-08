@@ -15,7 +15,7 @@ digraph {
 			style="filled"
 			,shape="oval"
 			,fillcolor="lightgreen"
-			,label="Prerequesite"
+			,label=< <b>Prerequesite</b> >
 		]
 		test_start [
 			style="filled"
