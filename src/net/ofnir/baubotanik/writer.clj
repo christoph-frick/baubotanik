@@ -64,11 +64,10 @@
 (defn attr-string
   [attr]
   (str "\""
-       (str/escape
+       (escape-double-quotes
         (cond
           (keyword? attr) (attr-key attr)
-          :else (str attr))
-        {\" "\\\""})
+          :else (str attr)))
        "\""))
 
 (defn attr-value
