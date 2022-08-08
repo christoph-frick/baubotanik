@@ -21,6 +21,6 @@
   :global-vars {*warn-on-reflection* true}
   :profiles {:uberjar {:aot :all
                        :native-image {:jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
-             :kaocha {:dependencies [[lambdaisland/kaocha "1.64.1010"]]}}
-  :aliases {"test-refresh" ["kaocha" "--watch"]
+             :kaocha {:dependencies [[lambdaisland/kaocha "1.69.1069"]]}}
+  :aliases {"kw" ["kaocha" "--watch"]
             "kaocha" ["with-profile" "+kaocha" "run" "-m" "kaocha.runner"]})
