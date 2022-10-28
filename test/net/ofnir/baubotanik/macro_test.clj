@@ -19,7 +19,6 @@
     '[:x 1 2 3] '(m %&) '(m 1 2 3) '[:x %&]))
 
 (deftest test-macro-expand-all
-  ; TODO: splice macro result
   (is
    (=
     '(digraph
@@ -29,15 +28,15 @@
                        [:tr [:td {:align :left} "Provides callback to still continue"]]]}]
       [:node2]
       [:node1 :node2 {:styles [:link]}]
-      #_[:node1 :node1]
-      #_[:node1 :node2])
+      [:node1 :node1]
+      [:node1 :node2])
 
     (sut/macro-expand-all
      '{(table %&) [:table {:border 0} %&]
        (trl %&) [:tr [:td {:align :left} %&]]
        (monospace %&) [:font {:face "Monospace"} %&]
        (link %1 %2) [%1 %2 {:styles [:link]}]
-       #_#_(@link-and-loop %1 %2) [[%1 %1] [%1 %2]]}
+       (&link-and-loop %1 %2) [[%1 %1] [%1 %2]]}
      '(digraph
        [:node1 {:label (table
                         (trl (monospace "contNavActn = event.postpone()"))
@@ -45,4 +44,4 @@
                         (trl "Provides callback to still continue"))}]
        [:node2]
        (link :node1 :node2)
-       #_(@link-and-loop :node1 :node2))))))
+       (&link-and-loop :node1 :node2))))))
