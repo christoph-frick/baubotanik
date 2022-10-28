@@ -41,7 +41,7 @@
 
 (s/def ::root (s/keys
                  :req-un [::graph]
-                 :opt-un  [::styles]))
+                 :opt-un  [::styles ::macros]))
 
 (defn safe-conform
   [spec data]

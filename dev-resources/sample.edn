@@ -18,6 +18,8 @@
                       :fillcolor "lightcoral"}
           }
 
+ :macros {(bold %&) [:b %&]}
+
  :graph (digraph
           {:styles [:font]
            :compound true}
@@ -27,7 +29,7 @@
                     {:label "Test"}
 
                     [:test-prerequesite {:styles [:event-start]
-                                         :label [:b "Prerequesite"]}]
+                                         :label (bold "Prerequesite")}]
                     [:test-start {:styles [:event-start]
                                   :label "Start"}]
                     [:test-action {:styles [:task]

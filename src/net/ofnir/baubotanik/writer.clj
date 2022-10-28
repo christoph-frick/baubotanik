@@ -1,7 +1,8 @@
 (ns net.ofnir.baubotanik.writer
   (:require [com.stuartsierra.dependency :as dep]
             [clojure.string :as str]
-            [hiccup.core :as hiccup]))
+            [hiccup.core :as hiccup]
+            [net.ofnir.baubotanik.macro :as macro]))
 
 (defn expand-styles
   "Materialize a style, that depends on other, known styles"
@@ -174,6 +175,11 @@
 (defn write
   [graph]
   (let [known-styles (build-known-styles (get graph :styles {}))
-        ctx {:known-styles known-styles
-             :indent 0}]
-    (block ctx (:graph graph))))
+        maybe-macros (get graph :macros)
+        g (get graph :graph)]
+    (block
+     {:known-styles known-styles
+      :indent 0}
+     (if maybe-macros
+       (macro/macro-expand-all maybe-macros g)
+       g))))
