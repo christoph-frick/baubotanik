@@ -56,7 +56,7 @@
     (walk/prewalk
      (fn [node]
        (if (and (sequential? node)
-                (.contains node macro-arg-rest))
+                (.contains ^java.util.Collection node macro-arg-rest))
          (splice macro-arg-rest? (constantly replacements) node)
          node))
      out)))
